@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Api_Home_RentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="varchar" MaxLength="50" />
+          <Property Name="Home_rent" Type="int" />
+          <Property Name="Water_bill" Type="int" />
+          <Property Name="Dirty_bill" Type="int" />
+          <Property Name="Service_Charge" Type="int" />
+          <Property Name="Gas_bill" Type="int" />
+          <Property Name="Other_bill" Type="int" />
+          <Property Name="Prevous_bill" Type="int" />
+          <Property Name="Total_bill" Type="int" />
+          <Property Name="Give_money" Type="int" />
+          <Property Name="Rest_off_bill" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="login_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Costs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Reason" Type="varchar" MaxLength="200" />
+          <Property Name="Amount" Type="bigint" />
+          <Property Name="Owner_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="bigint" Nullable="false" />
+          <Property Name="Nid_number" Type="bigint" />
+          <Property Name="Father_name" Type="varchar" MaxLength="50" />
+          <Property Name="Mother_name" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="House_no" Type="varchar" MaxLength="50" />
+          <Property Name="Road_no" Type="varchar" MaxLength="50" />
+          <Property Name="Sector" Type="varchar" MaxLength="50" />
+          <Property Name="Present_add" Type="varchar" MaxLength="200" />
+          <Property Name="Fixed_add" Type="varchar" MaxLength="200" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Profession" Type="varchar" MaxLength="200" />
+          <Property Name="Picture" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nid_picture" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Month" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Owner_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Moneys">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="bill_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tanent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Login_id" Type="int" Nullable="false" />
+          <Property Name="Owner_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Tokens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login_id" Type="int" Nullable="false" />
+          <Property Name="Token" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Create_at" Type="datetime" Nullable="false" />
+          <Property Name="Update_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Bills_Logins">
+          <End Role="Logins" Type="Self.Logins" Multiplicity="1" />
+          <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Logins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="login_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Moneys_Bills">
+          <End Role="Bills" Type="Self.Bills" Multiplicity="1" />
+          <End Role="Moneys" Type="Self.Moneys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bills">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Moneys">
+              <PropertyRef Name="bill_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tanent_Logins">
+          <End Role="Logins" Type="Self.Logins" Multiplicity="1" />
+          <End Role="Tanent" Type="Self.Tanent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Logins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tanent">
+              <PropertyRef Name="Login_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tokens_Logins">
+          <End Role="Logins" Type="Self.Logins" Multiplicity="1" />
+          <End Role="Tokens" Type="Self.Tokens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Logins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tokens">
+              <PropertyRef Name="Login_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Api_Home_RentModelStoreContainer">
+          <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Costs" EntityType="Self.Costs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Moneys" EntityType="Self.Moneys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tanent" EntityType="Self.Tanent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tokens" EntityType="Self.Tokens" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bills_Logins" Association="Self.FK_Bills_Logins">
+            <End Role="Logins" EntitySet="Logins" />
+            <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Moneys_Bills" Association="Self.FK_Moneys_Bills">
+            <End Role="Bills" EntitySet="Bills" />
+            <End Role="Moneys" EntitySet="Moneys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tanent_Logins" Association="Self.FK_Tanent_Logins">
+            <End Role="Logins" EntitySet="Logins" />
+            <End Role="Tanent" EntitySet="Tanent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tokens_Logins" Association="Self.FK_Tokens_Logins">
+            <End Role="Logins" EntitySet="Logins" />
+            <End Role="Tokens" EntitySet="Tokens" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Api_Home_RentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Home_rent" Type="Int32" />
+          <Property Name="Water_bill" Type="Int32" />
+          <Property Name="Dirty_bill" Type="Int32" />
+          <Property Name="Service_Charge" Type="Int32" />
+          <Property Name="Gas_bill" Type="Int32" />
+          <Property Name="Other_bill" Type="Int32" />
+          <Property Name="Prevous_bill" Type="Int32" />
+          <Property Name="Total_bill" Type="Int32" />
+          <Property Name="Give_money" Type="Int32" />
+          <Property Name="Rest_off_bill" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="login_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Login" Relationship="Self.FK_Bills_Logins" FromRole="Bills" ToRole="Logins" />
+          <NavigationProperty Name="Moneys" Relationship="Self.FK_Moneys_Bills" FromRole="Bills" ToRole="Moneys" />
+        </EntityType>
+        <EntityType Name="Cost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Int64" />
+          <Property Name="Owner_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="Int64" Nullable="false" />
+          <Property Name="Nid_number" Type="Int64" />
+          <Property Name="Father_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mother_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="House_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Road_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Present_add" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Fixed_add" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Profession" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nid_picture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Owner_id" Type="Int32" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_Bills_Logins" FromRole="Logins" ToRole="Bills" />
+          <NavigationProperty Name="Tanents" Relationship="Self.FK_Tanent_Logins" FromRole="Logins" ToRole="Tanent" />
+          <NavigationProperty Name="Tokens" Relationship="Self.FK_Tokens_Logins" FromRole="Logins" ToRole="Tokens" />
+        </EntityType>
+        <EntityType Name="Money">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="bill_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK_Moneys_Bills" FromRole="Moneys" ToRole="Bills" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tanent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Login_id" Type="Int32" Nullable="false" />
+          <Property Name="Owner_id" Type="Int32" />
+          <NavigationProperty Name="Login" Relationship="Self.FK_Tanent_Logins" FromRole="Tanent" ToRole="Logins" />
+        </EntityType>
+        <EntityType Name="Token">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login_id" Type="Int32" Nullable="false" />
+          <Property Name="Token1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Create_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Update_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Login" Relationship="Self.FK_Tokens_Logins" FromRole="Tokens" ToRole="Logins" />
+        </EntityType>
+        <Association Name="FK_Bills_Logins">
+          <End Role="Logins" Type="Self.Login" Multiplicity="1" />
+          <End Role="Bills" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Logins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="login_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Moneys_Bills">
+          <End Role="Bills" Type="Self.Bill" Multiplicity="1" />
+          <End Role="Moneys" Type="Self.Money" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bills">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Moneys">
+              <PropertyRef Name="bill_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tanent_Logins">
+          <End Role="Logins" Type="Self.Login" Multiplicity="1" />
+          <End Role="Tanent" Type="Self.Tanent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Logins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tanent">
+              <PropertyRef Name="Login_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tokens_Logins">
+          <End Role="Logins" Type="Self.Login" Multiplicity="1" />
+          <End Role="Tokens" Type="Self.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Logins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tokens">
+              <PropertyRef Name="Login_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Api_Home_RentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bills" EntityType="Self.Bill" />
+          <EntitySet Name="Costs" EntityType="Self.Cost" />
+          <EntitySet Name="Logins" EntityType="Self.Login" />
+          <EntitySet Name="Moneys" EntityType="Self.Money" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tanents" EntityType="Self.Tanent" />
+          <EntitySet Name="Tokens" EntityType="Self.Token" />
+          <AssociationSet Name="FK_Bills_Logins" Association="Self.FK_Bills_Logins">
+            <End Role="Logins" EntitySet="Logins" />
+            <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Moneys_Bills" Association="Self.FK_Moneys_Bills">
+            <End Role="Bills" EntitySet="Bills" />
+            <End Role="Moneys" EntitySet="Moneys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tanent_Logins" Association="Self.FK_Tanent_Logins">
+            <End Role="Logins" EntitySet="Logins" />
+            <End Role="Tanent" EntitySet="Tanents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tokens_Logins" Association="Self.FK_Tokens_Logins">
+            <End Role="Logins" EntitySet="Logins" />
+            <End Role="Tokens" EntitySet="Tokens" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Api_Home_RentModelStoreContainer" CdmEntityContainer="Api_Home_RentEntities">
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="Api_Home_RentModel.Bill">
+              <MappingFragment StoreEntitySet="Bills">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Home_rent" ColumnName="Home_rent" />
+                <ScalarProperty Name="Water_bill" ColumnName="Water_bill" />
+                <ScalarProperty Name="Dirty_bill" ColumnName="Dirty_bill" />
+                <ScalarProperty Name="Service_Charge" ColumnName="Service_Charge" />
+                <ScalarProperty Name="Gas_bill" ColumnName="Gas_bill" />
+                <ScalarProperty Name="Other_bill" ColumnName="Other_bill" />
+                <ScalarProperty Name="Prevous_bill" ColumnName="Prevous_bill" />
+                <ScalarProperty Name="Total_bill" ColumnName="Total_bill" />
+                <ScalarProperty Name="Give_money" ColumnName="Give_money" />
+                <ScalarProperty Name="Rest_off_bill" ColumnName="Rest_off_bill" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="login_id" ColumnName="login_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Costs">
+            <EntityTypeMapping TypeName="Api_Home_RentModel.Cost">
+              <MappingFragment StoreEntitySet="Costs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Owner_id" ColumnName="Owner_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="Api_Home_RentModel.Login">
+              <MappingFragment StoreEntitySet="Logins">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Nid_number" ColumnName="Nid_number" />
+                <ScalarProperty Name="Father_name" ColumnName="Father_name" />
+                <ScalarProperty Name="Mother_name" ColumnName="Mother_name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="House_no" ColumnName="House_no" />
+                <ScalarProperty Name="Road_no" ColumnName="Road_no" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="Present_add" ColumnName="Present_add" />
+                <ScalarProperty Name="Fixed_add" ColumnName="Fixed_add" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Profession" ColumnName="Profession" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Nid_picture" ColumnName="Nid_picture" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Owner_id" ColumnName="Owner_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Moneys">
+            <EntityTypeMapping TypeName="Api_Home_RentModel.Money">
+              <MappingFragment StoreEntitySet="Moneys">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="bill_id" ColumnName="bill_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Api_Home_RentModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tanents">
+            <EntityTypeMapping TypeName="Api_Home_RentModel.Tanent">
+              <MappingFragment StoreEntitySet="Tanent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Login_id" ColumnName="Login_id" />
+                <ScalarProperty Name="Owner_id" ColumnName="Owner_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tokens">
+            <EntityTypeMapping TypeName="Api_Home_RentModel.Token">
+              <MappingFragment StoreEntitySet="Tokens">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login_id" ColumnName="Login_id" />
+                <ScalarProperty Name="Token1" ColumnName="Token" />
+                <ScalarProperty Name="Create_at" ColumnName="Create_at" />
+                <ScalarProperty Name="Update_at" ColumnName="Update_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
