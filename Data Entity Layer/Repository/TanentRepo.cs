@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Data_Entity_Layer.Repository
 {
-    public class TanenetRepo:IRepository<Tanent,int>
+    public class TanentRepo:IRepository<Tanent,int>
     {
         Api_Home_RentEntities db;
-        public TanenetRepo(Api_Home_RentEntities db)
+        public TanentRepo(Api_Home_RentEntities db)
         {
             this.db = db;
         }
