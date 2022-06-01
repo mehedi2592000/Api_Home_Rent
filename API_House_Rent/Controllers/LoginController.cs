@@ -21,7 +21,7 @@ namespace API_House_Rent.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Route("api/Login/LoginId")]
+        [Route("api/Login/LoginId/{Id}")]
         [HttpGet]
         public HttpResponseMessage GetIdLogin(int id)
         {

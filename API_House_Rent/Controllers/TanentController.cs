@@ -20,7 +20,7 @@ namespace API_House_Rent.Controllers
             return Request.CreateResponse(HttpStatusCode.OK,TanentService.GetAll());
         }
 
-        [Route("api/Tanent/GetIdTanent")]
+        [Route("api/Tanent/GetIdTanent/{Id}")]
         [HttpGet]
         public HttpResponseMessage GetIdTanent(int Id)
         {
