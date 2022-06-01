@@ -1,0 +1,10 @@
+D:\Api_Home_Rent\API_House_Rent\Data Entity Layer\bin\Debug\Data Entity Layer.dll.config
+D:\Api_Home_Rent\API_House_Rent\Data Entity Layer\bin\Debug\Data Entity Layer.dll
+D:\Api_Home_Rent\API_House_Rent\Data Entity Layer\bin\Debug\Data Entity Layer.pdb
+D:\Api_Home_Rent\API_House_Rent\Data Entity Layer\bin\Debug\EntityFramework.dll
+D:\Api_Home_Rent\API_House_Rent\Data Entity Layer\bin\Debug\EntityFramework.xml
+D:\Api_Home_Rent\API_House_Rent\Data Entity Layer\obj\Debug\Data Entity Layer.csproj.AssemblyReference.cache
+D:\Api_Home_Rent\API_House_Rent\Data Entity Layer\obj\Debug\Data Entity Layer.csproj.CoreCompileInputs.cache
+D:\Api_Home_Rent\API_House_Rent\Data Entity Layer\obj\Debug\Data Entity Layer.csproj.CopyComplete
+D:\Api_Home_Rent\API_House_Rent\Data Entity Layer\obj\Debug\Data Entity Layer.dll
+D:\Api_Home_Rent\API_House_Rent\Data Entity Layer\obj\Debug\Data Entity Layer.pdb

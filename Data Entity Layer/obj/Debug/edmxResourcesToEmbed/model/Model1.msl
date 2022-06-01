@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Api_Home_RentModelStoreContainer" CdmEntityContainer="Api_Home_RentEntities">
+    <EntitySetMapping Name="Bills">
+      <EntityTypeMapping TypeName="Api_Home_RentModel.Bill">
+        <MappingFragment StoreEntitySet="Bills">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Home_rent" ColumnName="Home_rent" />
+          <ScalarProperty Name="Water_bill" ColumnName="Water_bill" />
+          <ScalarProperty Name="Dirty_bill" ColumnName="Dirty_bill" />
+          <ScalarProperty Name="Service_Charge" ColumnName="Service_Charge" />
+          <ScalarProperty Name="Gas_bill" ColumnName="Gas_bill" />
+          <ScalarProperty Name="Other_bill" ColumnName="Other_bill" />
+          <ScalarProperty Name="Prevous_bill" ColumnName="Prevous_bill" />
+          <ScalarProperty Name="Total_bill" ColumnName="Total_bill" />
+          <ScalarProperty Name="Give_money" ColumnName="Give_money" />
+          <ScalarProperty Name="Rest_off_bill" ColumnName="Rest_off_bill" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="login_id" ColumnName="login_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Costs">
+      <EntityTypeMapping TypeName="Api_Home_RentModel.Cost">
+        <MappingFragment StoreEntitySet="Costs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Owner_id" ColumnName="Owner_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="Api_Home_RentModel.Login">
+        <MappingFragment StoreEntitySet="Logins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Nid_number" ColumnName="Nid_number" />
+          <ScalarProperty Name="Father_name" ColumnName="Father_name" />
+          <ScalarProperty Name="Mother_name" ColumnName="Mother_name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="House_no" ColumnName="House_no" />
+          <ScalarProperty Name="Road_no" ColumnName="Road_no" />
+          <ScalarProperty Name="Sector" ColumnName="Sector" />
+          <ScalarProperty Name="Present_add" ColumnName="Present_add" />
+          <ScalarProperty Name="Fixed_add" ColumnName="Fixed_add" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="Nid_picture" ColumnName="Nid_picture" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Owner_id" ColumnName="Owner_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Moneys">
+      <EntityTypeMapping TypeName="Api_Home_RentModel.Money">
+        <MappingFragment StoreEntitySet="Moneys">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="bill_id" ColumnName="bill_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Api_Home_RentModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tanents">
+      <EntityTypeMapping TypeName="Api_Home_RentModel.Tanent">
+        <MappingFragment StoreEntitySet="Tanent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Login_id" ColumnName="Login_id" />
+          <ScalarProperty Name="Owner_id" ColumnName="Owner_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tokens">
+      <EntityTypeMapping TypeName="Api_Home_RentModel.Token">
+        <MappingFragment StoreEntitySet="Tokens">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login_id" ColumnName="Login_id" />
+          <ScalarProperty Name="Token1" ColumnName="Token" />
+          <ScalarProperty Name="Create_at" ColumnName="Create_at" />
+          <ScalarProperty Name="Update_at" ColumnName="Update_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

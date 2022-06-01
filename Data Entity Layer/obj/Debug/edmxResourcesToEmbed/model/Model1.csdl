@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Api_Home_RentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Home_rent" Type="Int32" />
+    <Property Name="Water_bill" Type="Int32" />
+    <Property Name="Dirty_bill" Type="Int32" />
+    <Property Name="Service_Charge" Type="Int32" />
+    <Property Name="Gas_bill" Type="Int32" />
+    <Property Name="Other_bill" Type="Int32" />
+    <Property Name="Prevous_bill" Type="Int32" />
+    <Property Name="Total_bill" Type="Int32" />
+    <Property Name="Give_money" Type="Int32" />
+    <Property Name="Rest_off_bill" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="login_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Login" Relationship="Self.FK_Bills_Logins" FromRole="Bills" ToRole="Logins" />
+    <NavigationProperty Name="Moneys" Relationship="Self.FK_Moneys_Bills" FromRole="Bills" ToRole="Moneys" />
+  </EntityType>
+  <EntityType Name="Cost">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Int64" />
+    <Property Name="Owner_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="Int64" Nullable="false" />
+    <Property Name="Nid_number" Type="Int64" />
+    <Property Name="Father_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mother_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="House_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Road_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Present_add" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Fixed_add" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Profession" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nid_picture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Owner_id" Type="Int32" />
+    <NavigationProperty Name="Bills" Relationship="Self.FK_Bills_Logins" FromRole="Logins" ToRole="Bills" />
+    <NavigationProperty Name="Tanents" Relationship="Self.FK_Tanent_Logins" FromRole="Logins" ToRole="Tanent" />
+    <NavigationProperty Name="Tokens" Relationship="Self.FK_Tokens_Logins" FromRole="Logins" ToRole="Tokens" />
+  </EntityType>
+  <EntityType Name="Money">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="bill_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bill" Relationship="Self.FK_Moneys_Bills" FromRole="Moneys" ToRole="Bills" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tanent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Login_id" Type="Int32" Nullable="false" />
+    <Property Name="Owner_id" Type="Int32" />
+    <NavigationProperty Name="Login" Relationship="Self.FK_Tanent_Logins" FromRole="Tanent" ToRole="Logins" />
+  </EntityType>
+  <EntityType Name="Token">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login_id" Type="Int32" Nullable="false" />
+    <Property Name="Token1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Create_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Update_at" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Login" Relationship="Self.FK_Tokens_Logins" FromRole="Tokens" ToRole="Logins" />
+  </EntityType>
+  <Association Name="FK_Bills_Logins">
+    <End Role="Logins" Type="Self.Login" Multiplicity="1" />
+    <End Role="Bills" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Logins">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bills">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Moneys_Bills">
+    <End Role="Bills" Type="Self.Bill" Multiplicity="1" />
+    <End Role="Moneys" Type="Self.Money" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bills">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Moneys">
+        <PropertyRef Name="bill_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tanent_Logins">
+    <End Role="Logins" Type="Self.Login" Multiplicity="1" />
+    <End Role="Tanent" Type="Self.Tanent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Logins">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tanent">
+        <PropertyRef Name="Login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tokens_Logins">
+    <End Role="Logins" Type="Self.Login" Multiplicity="1" />
+    <End Role="Tokens" Type="Self.Token" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Logins">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tokens">
+        <PropertyRef Name="Login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Api_Home_RentEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bills" EntityType="Self.Bill" />
+    <EntitySet Name="Costs" EntityType="Self.Cost" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="Moneys" EntityType="Self.Money" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tanents" EntityType="Self.Tanent" />
+    <EntitySet Name="Tokens" EntityType="Self.Token" />
+    <AssociationSet Name="FK_Bills_Logins" Association="Self.FK_Bills_Logins">
+      <End Role="Logins" EntitySet="Logins" />
+      <End Role="Bills" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Moneys_Bills" Association="Self.FK_Moneys_Bills">
+      <End Role="Bills" EntitySet="Bills" />
+      <End Role="Moneys" EntitySet="Moneys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tanent_Logins" Association="Self.FK_Tanent_Logins">
+      <End Role="Logins" EntitySet="Logins" />
+      <End Role="Tanent" EntitySet="Tanents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tokens_Logins" Association="Self.FK_Tokens_Logins">
+      <End Role="Logins" EntitySet="Logins" />
+      <End Role="Tokens" EntitySet="Tokens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

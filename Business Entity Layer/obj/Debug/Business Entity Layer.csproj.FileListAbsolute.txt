@@ -1,0 +1,6 @@
+D:\Api_Home_Rent\API_House_Rent\Business Entity Layer\bin\Debug\Business Entity Layer.dll
+D:\Api_Home_Rent\API_House_Rent\Business Entity Layer\bin\Debug\Business Entity Layer.pdb
+D:\Api_Home_Rent\API_House_Rent\Business Entity Layer\obj\Debug\Business Entity Layer.csproj.AssemblyReference.cache
+D:\Api_Home_Rent\API_House_Rent\Business Entity Layer\obj\Debug\Business Entity Layer.csproj.CoreCompileInputs.cache
+D:\Api_Home_Rent\API_House_Rent\Business Entity Layer\obj\Debug\Business Entity Layer.dll
+D:\Api_Home_Rent\API_House_Rent\Business Entity Layer\obj\Debug\Business Entity Layer.pdb

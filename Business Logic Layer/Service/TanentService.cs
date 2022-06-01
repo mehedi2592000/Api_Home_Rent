@@ -25,7 +25,7 @@ namespace Business_Logic_Layer.Service
             return data;
         }
 
-        public static bool AddTanent(Tanent e)
+        public static bool AddTanent(TanentModel e)
         {
             var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<TanentModel, Tanent>())).Map<Tanent>(e);
 

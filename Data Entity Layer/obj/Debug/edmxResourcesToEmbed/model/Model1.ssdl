@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Api_Home_RentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bills">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="50" />
+    <Property Name="Home_rent" Type="int" />
+    <Property Name="Water_bill" Type="int" />
+    <Property Name="Dirty_bill" Type="int" />
+    <Property Name="Service_Charge" Type="int" />
+    <Property Name="Gas_bill" Type="int" />
+    <Property Name="Other_bill" Type="int" />
+    <Property Name="Prevous_bill" Type="int" />
+    <Property Name="Total_bill" Type="int" />
+    <Property Name="Give_money" Type="int" />
+    <Property Name="Rest_off_bill" Type="int" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="login_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Costs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="50" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Reason" Type="varchar" MaxLength="200" />
+    <Property Name="Amount" Type="bigint" />
+    <Property Name="Owner_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Logins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="bigint" Nullable="false" />
+    <Property Name="Nid_number" Type="bigint" />
+    <Property Name="Father_name" Type="varchar" MaxLength="50" />
+    <Property Name="Mother_name" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="House_no" Type="varchar" MaxLength="50" />
+    <Property Name="Road_no" Type="varchar" MaxLength="50" />
+    <Property Name="Sector" Type="varchar" MaxLength="50" />
+    <Property Name="Present_add" Type="varchar" MaxLength="200" />
+    <Property Name="Fixed_add" Type="varchar" MaxLength="200" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Profession" Type="varchar" MaxLength="200" />
+    <Property Name="Picture" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Nid_picture" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="50" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Owner_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Moneys">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="50" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="bill_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tanent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Login_id" Type="int" Nullable="false" />
+    <Property Name="Owner_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Tokens">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login_id" Type="int" Nullable="false" />
+    <Property Name="Token" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Create_at" Type="datetime" Nullable="false" />
+    <Property Name="Update_at" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Bills_Logins">
+    <End Role="Logins" Type="Self.Logins" Multiplicity="1" />
+    <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Logins">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bills">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Moneys_Bills">
+    <End Role="Bills" Type="Self.Bills" Multiplicity="1" />
+    <End Role="Moneys" Type="Self.Moneys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bills">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Moneys">
+        <PropertyRef Name="bill_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tanent_Logins">
+    <End Role="Logins" Type="Self.Logins" Multiplicity="1" />
+    <End Role="Tanent" Type="Self.Tanent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Logins">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tanent">
+        <PropertyRef Name="Login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tokens_Logins">
+    <End Role="Logins" Type="Self.Logins" Multiplicity="1" />
+    <End Role="Tokens" Type="Self.Tokens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Logins">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tokens">
+        <PropertyRef Name="Login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Api_Home_RentModelStoreContainer">
+    <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Costs" EntityType="Self.Costs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Moneys" EntityType="Self.Moneys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tanent" EntityType="Self.Tanent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tokens" EntityType="Self.Tokens" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Bills_Logins" Association="Self.FK_Bills_Logins">
+      <End Role="Logins" EntitySet="Logins" />
+      <End Role="Bills" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Moneys_Bills" Association="Self.FK_Moneys_Bills">
+      <End Role="Bills" EntitySet="Bills" />
+      <End Role="Moneys" EntitySet="Moneys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tanent_Logins" Association="Self.FK_Tanent_Logins">
+      <End Role="Logins" EntitySet="Logins" />
+      <End Role="Tanent" EntitySet="Tanent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tokens_Logins" Association="Self.FK_Tokens_Logins">
+      <End Role="Logins" EntitySet="Logins" />
+      <End Role="Tokens" EntitySet="Tokens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
