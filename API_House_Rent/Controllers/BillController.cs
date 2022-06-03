@@ -28,11 +28,12 @@ namespace API_House_Rent.Controllers
         }
 
 
-        [Route("api/Bill/AddBill")]
+        [Route("api/Bill/AddBillbyId/{Id}")]
         [HttpPost]
-        public HttpResponseMessage AddBill(BillModel e)
+        public HttpResponseMessage AddBill(BillModel e,int Id)
         {
-            var data = BillService.AddBill(e);
+            
+            var data = BillService.AddBill(e,Id);
                 return Request.CreateResponse(data?HttpStatusCode.OK:HttpStatusCode.BadRequest);
         }
 

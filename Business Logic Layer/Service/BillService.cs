@@ -24,8 +24,11 @@ namespace Business_Logic_Layer.Service
             return model;
         }
 
-        public static bool AddBill(BillModel e)
+        public static bool AddBill(BillModel e,int Id)
         {
+            e.login_id = Id;
+
+            e.Total_bill = e.Home_rent + e.Water_bill + e.Dirty_bill + e.Service_Charge + e.Gas_bill + e.Other_bill + e.Prevous_bill;
             var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<BillModel, Bill>())).Map<Bill>(e);
 
             try
