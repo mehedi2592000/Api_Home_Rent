@@ -27,11 +27,11 @@ namespace API_House_Rent.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, MoneyService.GetId(Id));
         }
 
-        [Route("api/Money/AddMoney")]
+        [Route("api/Money/AddMoney/{Id}")]
         [HttpPost]
-        public HttpResponseMessage AddMoney(MoneyModel m)
+        public HttpResponseMessage AddMoney(MoneyModel m,int Id)
         {
-            var data = MoneyService.AddMoney(m);
+            var data = MoneyService.AddMoney(m,Id);
             return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
         }
 
@@ -51,6 +51,14 @@ namespace API_House_Rent.Controllers
             var data = MoneyService.DeleteMoney(Id);
             return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
         }
+
+        [Route("api/Money/GetALl/{Id}")]
+        [HttpGet]
+        public HttpResponseMessage GetMoney(int Id)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, MoneyService.GetAllMoneyList(Id));
+        }
+
 
     }
 }

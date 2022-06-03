@@ -24,13 +24,22 @@ namespace Business_Logic_Layer.Service
             return data;
         }
 
-        public static bool AddMoney(MoneyModel e)
+        public static bool AddMoney(MoneyModel e,int Id)
         {
-            var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<MoneyModel, Money>())).Map<Money>(e);
+            e.bill_id = Id;
+
+            BillModel bm = new BillModel();
+            bm.Id = Id;
+            bm.Give_money = e.Amount;
+            bm.Rest_off_bill = bm.Total_bill - e.Amount;
+            var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<BillModel, Bill>())).Map<Bill>(bm);
+            DataAccessFactory.BillDataAccessFactory().Edit(data);
+
+            var Adddata = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<MoneyModel, Money>())).Map<Money>(e);
 
             try
             {
-                DataAccessFactory.MoneyDataAccessFactory().Add(data);
+                DataAccessFactory.MoneyDataAccessFactory().Add(Adddata);
                 return true;
             }
             catch
@@ -65,6 +74,14 @@ namespace Business_Logic_Layer.Service
             {
                 return false;
             }
+        }
+
+        public static List<MoneyModel> GetAllMoneyList(int Id)
+        {
+
+            var da= DataAccessFactory.MoneyDataAccessFactory().GetAll().Where(x=>x.bill_id==Id);
+            var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Money, MoneyModel>())).Map<List<MoneyModel>>(da);
+            return data;
         }
     }
 }

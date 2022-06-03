@@ -27,7 +27,7 @@ namespace Business_Logic_Layer.Service
         public static bool AddBill(BillModel e,int Id)
         {
             e.login_id = Id;
-
+            
             e.Total_bill = e.Home_rent + e.Water_bill + e.Dirty_bill + e.Service_Charge + e.Gas_bill + e.Other_bill + e.Prevous_bill;
             var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<BillModel, Bill>())).Map<Bill>(e);
 
@@ -69,7 +69,7 @@ namespace Business_Logic_Layer.Service
 
         public static List<BillModel> OwnerTanentBill(int Id)
         {
-            var dat = DataAccessFactory.BillDataAccessFactory().GetAll().Where(x => x.Id == Id);
+            var dat = DataAccessFactory.BillDataAccessFactory().GetAll().Where(x => x.login_id == Id);
             var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Bill, BillModel>())).Map<List<BillModel>>(dat);
             return data;
         }
