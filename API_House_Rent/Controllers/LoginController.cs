@@ -37,6 +37,22 @@ namespace API_House_Rent.Controllers
             return Request.CreateResponse(data?HttpStatusCode.OK : HttpStatusCode.BadRequest);
 
         }
+        [Route("api/Login/OwnerAddTanent/{Id}")]
+        [HttpPost]
+        public HttpResponseMessage OwnerAddTanent(LoginModel e,int Id)
+        {
+            var data = LoginService.OwnerAddTanent(e,Id);
+            return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
+
+        }
+        [Route("api/Login/OwnerAddCaretaker/{Id}")]
+        [HttpPost]
+        public HttpResponseMessage OwnerAddCaretaker(LoginModel e, int Id)
+        {
+            var data = LoginService.OwnerAddCaretaker(e, Id);
+            return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
+
+        }
 
         [Route("api/Login/EditLogin")]
         [HttpPost]

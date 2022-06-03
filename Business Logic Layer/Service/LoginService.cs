@@ -64,5 +64,39 @@ namespace Business_Logic_Layer.Service
                 return false;
             }
         }
+
+        public static bool OwnerAddTanent(LoginModel e,int Id)
+        {
+
+
+            e.Owner_id = Id;
+            var dat = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<LoginModel, Login>())).Map<Login>(e);
+            try
+            {
+                DataAccessFactory.LoginDataAccessFactory().Add(dat);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        public static bool OwnerAddCaretaker(LoginModel e,int Id)
+        {
+            e.Owner_id = Id;
+            var dat = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<LoginModel, Login>())).Map<Login>(e);
+            try
+            {
+                DataAccessFactory.LoginDataAccessFactory().Add(dat);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
     }
 }
