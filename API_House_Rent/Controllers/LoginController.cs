@@ -94,5 +94,14 @@ namespace API_House_Rent.Controllers
             var data = LoginService.OwnerTanetAllList(Id);
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
+
+        [Route("api/Login/EditLogin/{Idd}")]
+        [HttpPost]
+        public HttpResponseMessage AccaptedTanenttEdit(LoginModel e,int Idd)
+        {
+            var data = LoginService.AccaptedTanentLogic(e,Idd);
+
+            return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
+        }
     }
 }

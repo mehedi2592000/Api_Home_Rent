@@ -130,5 +130,30 @@ namespace Business_Logic_Layer.Service
         }
 
 
+        public static bool AccaptedTanentLogic(LoginModel e,int Idd)
+        {
+            TanentModel tn = new TanentModel();
+            tn.Login_id = e.Id;
+            tn.Date = new DateTime();
+            tn.Owner_id = e.Owner_id;
+            var dat = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<TanentModel, Tanent>())).Map<Tanent>(e);
+            DataAccessFactory.TanentDataAccessFactory().Add(dat);
+
+
+            e.Owner_id = Idd;
+
+            var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<LoginModel, Login>())).Map<Login>(e);
+
+            try
+            {
+                DataAccessFactory.LoginDataAccessFactory().Edit(data);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }
