@@ -52,5 +52,12 @@ namespace API_House_Rent.Controllers
             var data = BillService.DeleteBill(Id);
             return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
         }
+
+        [Route("api/Bill/OwnerTanetAllList/{Id}")]
+        [HttpGet]
+        public HttpResponseMessage GetBillList(int Id)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, BillService.OwnerTanentBill(Id));
+        }
     }
 }

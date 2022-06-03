@@ -40,6 +40,23 @@ namespace Business_Logic_Layer.Service
 
         public static bool EditLogic(LoginModel e)
         {
+            
+            var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<LoginModel, Login>())).Map<Login>(e);
+            try
+            {
+                DataAccessFactory.LoginDataAccessFactory().Edit(data);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        public static bool AcceptedTanentEditLogic(LoginModel e,int Id)
+        {
+            e.Owner_id = Id;
             var data=new Mapper(new MapperConfiguration(cfg=>cfg.CreateMap<LoginModel,Login>())).Map<Login>(e);
             try
             {
@@ -98,5 +115,20 @@ namespace Business_Logic_Layer.Service
             }
 
         }
+
+        public static List<LoginModel> OwnerTanetAllList(int Id)
+        {
+            var dat = DataAccessFactory.LoginDataAccessFactory().GetAll().Where(x => x.Owner_id == Id && x.Status.Equals("Tanent"));
+            var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Login, LoginModel>())).Map<List<LoginModel>>(dat);
+            return data;
+        }
+        public static List<LoginModel> OwnerCaretakerAllList(int Id)
+        {
+            var dat = DataAccessFactory.LoginDataAccessFactory().GetAll().Where(x => x.Owner_id == Id && x.Status.Equals("Caretaker"));
+            var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Login, LoginModel>())).Map<List<LoginModel>>(dat);
+            return data;
+        }
+
+
     }
 }

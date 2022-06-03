@@ -63,5 +63,13 @@ namespace Business_Logic_Layer.Service
             }
             catch { return false; }
         }
+
+        public static List<BillModel> OwnerTanentBill(int Id)
+        {
+            var dat = DataAccessFactory.BillDataAccessFactory().GetAll().Where(x => x.Id == Id);
+            var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Bill, BillModel>())).Map<List<BillModel>>(dat);
+            return data;
+        }
+
     }
 }

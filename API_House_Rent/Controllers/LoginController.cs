@@ -63,12 +63,36 @@ namespace API_House_Rent.Controllers
             return Request.CreateResponse(data?HttpStatusCode.OK: HttpStatusCode.BadRequest);
         }
 
+        [Route("api/Login/AcceptedTanentEdit/{Id}")]
+        [HttpPost]
+        public HttpResponseMessage EditLogin(LoginModel e,int Id)
+        {
+            var data = LoginService.AcceptedTanentEditLogic(e,Id);
+
+            return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
+        }
+
         [Route("api/Login/DeleteLOgin/{Id}")]
         [HttpGet]
         public HttpResponseMessage DeleteLogin(int Id)
         {
             var data= LoginService.DeleteLogic(Id);
             return Request.CreateResponse(data?HttpStatusCode.OK:HttpStatusCode.BadRequest);
+        }
+
+        [Route("api/Login/OwnerTanetAllList/{Id}")]
+        [HttpGet]
+        public HttpResponseMessage OwnerTanetAllList(int Id)
+        {
+            var data = LoginService.OwnerTanetAllList(Id);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+        [Route("api/Login/OwnerCaretakerAllList/{Id}")]
+        [HttpGet]
+        public HttpResponseMessage OwnerCaretakerAllList(int Id)
+        {
+            var data = LoginService.OwnerTanetAllList(Id);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
         }
     }
 }
