@@ -27,6 +27,7 @@ namespace Business_Logic_Layer.Service
 
         public static bool AddTanent(TanentModel e)
         {
+            e.Date = DateTime.Now;
             var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<TanentModel, Tanent>())).Map<Tanent>(e);
 
             try

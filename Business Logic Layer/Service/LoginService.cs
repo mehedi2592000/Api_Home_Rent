@@ -26,6 +26,7 @@ namespace Business_Logic_Layer.Service
 
         public static bool AddLogin(LoginModel e)
         {
+            e.Date = DateTime.Now;
             var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<LoginModel, Login>())).Map<Login>(e);
             try
             {
@@ -85,7 +86,7 @@ namespace Business_Logic_Layer.Service
         public static bool OwnerAddTanent(LoginModel e,int Id)
         {
 
-
+            e.Date=DateTime.Now;
             e.Owner_id = Id;
             var dat = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<LoginModel, Login>())).Map<Login>(e);
             try
@@ -102,6 +103,7 @@ namespace Business_Logic_Layer.Service
 
         public static bool OwnerAddCaretaker(LoginModel e,int Id)
         {
+            e.Date = DateTime.Now;
             e.Owner_id = Id;
             var dat = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<LoginModel, Login>())).Map<Login>(e);
             try

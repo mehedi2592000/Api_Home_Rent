@@ -27,9 +27,10 @@ namespace Business_Logic_Layer.Service
         public static bool AddMoney(MoneyModel e,int Id)
         {
             e.bill_id = Id;
-
-            BillModel bm = new BillModel();
-            bm.Id = Id;
+            e.Month=DateTime.Now.ToString("MM");
+            e.Date=DateTime.Now;
+            var bm=DataAccessFactory.BillDataAccessFactory().GetAll().Where(x=>x.Id==Id).FirstOrDefault();
+            
             bm.Give_money = e.Amount;
             bm.Rest_off_bill = bm.Total_bill - e.Amount;
             var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<BillModel, Bill>())).Map<Bill>(bm);

@@ -24,8 +24,11 @@ namespace Business_Logic_Layer.Service
             return data;
         }
 
-        public static bool AddCost(CostModel c)
+        public static bool AddCost(CostModel c,int Id)
         {
+            c.Month = DateTime.Now.ToString("MM");
+            c.Date = DateTime.Now;
+            c.Owner_id = Id;
             var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<CostModel, Cost>())).Map<Cost>(c);
 
             try
@@ -65,6 +68,19 @@ namespace Business_Logic_Layer.Service
             {
                 return false;
             }
+        }
+        public static List<CostModel> SumOfamountById(int Id)
+        {
+            var data = from fm in DataAccessFactory.CostDataAccessFactory().GetAll()
+                       group fm by fm.Month into g
+                       select new CostModel
+                       {
+                           Month = g.First().Month,
+                           Amount = g.Where(x => x.Owner_id == Id).Sum(p => p.Amount),
+                       };
+
+
+            return data.ToList();
         }
     }
 }

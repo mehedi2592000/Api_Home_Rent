@@ -27,11 +27,11 @@ namespace API_House_Rent.Controllers
             return Request.CreateResponse(HttpStatusCode.OK,CostService.GetIdCost(id));
         }
 
-        [Route("api/Cost/AddCost")]
+        [Route("api/Cost/AddCost/{Id}")]
         [HttpPost]
-        public HttpResponseMessage AddCost(CostModel c)
+        public HttpResponseMessage AddCost(CostModel c,int Id)
         {
-            var data = CostService.AddCost(c);
+            var data = CostService.AddCost(c,Id);
 
             return Request.CreateResponse(data?HttpStatusCode.OK:HttpStatusCode.BadRequest);
 
@@ -54,6 +54,13 @@ namespace API_House_Rent.Controllers
 
             return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
 
+        }
+
+        [Route("api/Cost/SumOfamountById/{Id}")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(int Id)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, CostService.SumOfamountById(Id));
         }
     }
 }
