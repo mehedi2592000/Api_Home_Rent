@@ -103,5 +103,35 @@ namespace API_House_Rent.Controllers
 
             return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
         }
+
+        [Route("api/Login/login")]
+        [HttpPost]
+
+        public HttpResponseMessage login(LoginModel e)
+        {
+            var data = AuthService.Auth(e);
+            
+            if(data!=null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+
+
+        [Route("api/Logout")]
+        [HttpGet]
+        public HttpResponseMessage Logout()
+        {
+            var token=Request.Headers.Authorization.ToString();
+
+            if(token!=null)
+            {
+                AuthService.Logout(token);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            return Request.CreateResponse(HttpStatusCode.BadGateway);
+        }
     }
 }

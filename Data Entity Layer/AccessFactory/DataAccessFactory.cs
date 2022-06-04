@@ -1,4 +1,5 @@
-﻿using Data_Entity_Layer.model;
+﻿using Data_Entity_Layer.InterfaceRepo;
+using Data_Entity_Layer.model;
 using Data_Entity_Layer.Repository;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,11 @@ namespace Data_Entity_Layer.AccessFactory
         public static IRepository<Tanent, int> TanentDataAccessFactory()
         {
             return new TanentRepo(db);
+        }
+
+        public static IAuth AuthDataAccessFactory()
+        {
+            return new AuthRepo(db);
         }
     }
 }
