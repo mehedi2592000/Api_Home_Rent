@@ -52,6 +52,7 @@
     <Compile Include="Service\LoginService.cs" />
     <Compile Include="Service\MoneyService.cs" />
     <Compile Include="Service\TanentService.cs" />
+    <Compile Include="Service\userService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business Entity Layer\Business Entity Layer.csproj">

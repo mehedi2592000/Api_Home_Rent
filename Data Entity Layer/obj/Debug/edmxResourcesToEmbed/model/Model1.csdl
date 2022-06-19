@@ -103,6 +103,14 @@
     <Property Name="Update_at" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Login" Relationship="Self.FK_Tokens_Logins" FromRole="Tokens" ToRole="Logins" />
   </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
   <Association Name="FK_Bills_Logins">
     <End Role="Logins" Type="Self.Login" Multiplicity="1" />
     <End Role="Bills" Type="Self.Bill" Multiplicity="*" />
@@ -159,6 +167,7 @@
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Tanents" EntityType="Self.Tanent" />
     <EntitySet Name="Tokens" EntityType="Self.Token" />
+    <EntitySet Name="users" EntityType="Self.user" />
     <AssociationSet Name="FK_Bills_Logins" Association="Self.FK_Bills_Logins">
       <End Role="Logins" EntitySet="Logins" />
       <End Role="Bills" EntitySet="Bills" />

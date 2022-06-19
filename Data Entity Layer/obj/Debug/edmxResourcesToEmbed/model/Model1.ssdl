@@ -95,6 +95,14 @@
     <Property Name="Create_at" Type="datetime" Nullable="false" />
     <Property Name="Update_at" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="username" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
   <Association Name="FK_Bills_Logins">
     <End Role="Logins" Type="Self.Logins" Multiplicity="1" />
     <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
@@ -151,6 +159,7 @@
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tanent" EntityType="Self.Tanent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tokens" EntityType="Self.Tokens" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Bills_Logins" Association="Self.FK_Bills_Logins">
       <End Role="Logins" EntitySet="Logins" />
       <End Role="Bills" EntitySet="Bills" />

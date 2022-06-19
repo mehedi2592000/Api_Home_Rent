@@ -100,6 +100,14 @@
           <Property Name="Create_at" Type="datetime" Nullable="false" />
           <Property Name="Update_at" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="username" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Bills_Logins">
           <End Role="Logins" Type="Self.Logins" Multiplicity="1" />
           <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
@@ -156,6 +164,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tanent" EntityType="Self.Tanent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tokens" EntityType="Self.Tokens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Bills_Logins" Association="Self.FK_Bills_Logins">
             <End Role="Logins" EntitySet="Logins" />
             <End Role="Bills" EntitySet="Bills" />
@@ -281,6 +290,14 @@
           <Property Name="Update_at" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Login" Relationship="Self.FK_Tokens_Logins" FromRole="Tokens" ToRole="Logins" />
         </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Bills_Logins">
           <End Role="Logins" Type="Self.Login" Multiplicity="1" />
           <End Role="Bills" Type="Self.Bill" Multiplicity="*" />
@@ -337,6 +354,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Tanents" EntityType="Self.Tanent" />
           <EntitySet Name="Tokens" EntityType="Self.Token" />
+          <EntitySet Name="users" EntityType="Self.user" />
           <AssociationSet Name="FK_Bills_Logins" Association="Self.FK_Bills_Logins">
             <End Role="Logins" EntitySet="Logins" />
             <End Role="Bills" EntitySet="Bills" />
@@ -459,6 +477,15 @@
                 <ScalarProperty Name="Token1" ColumnName="Token" />
                 <ScalarProperty Name="Create_at" ColumnName="Create_at" />
                 <ScalarProperty Name="Update_at" ColumnName="Update_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="Api_Home_RentModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="username" ColumnName="username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

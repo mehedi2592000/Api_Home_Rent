@@ -41,6 +41,10 @@ namespace Data_Entity_Layer.AccessFactory
         {
             return new TanentRepo(db);
         }
+        public static IRepository<user, int> userDataAccessFactory()
+        {
+            return new userRepo(db);
+        }
 
         public static IAuth AuthDataAccessFactory()
         {
